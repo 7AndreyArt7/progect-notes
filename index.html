@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project-Notes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body class="body">
+<section class="container">
+    <header class="header">
+        <section class="notes">
+            <img src="assets/images/Notes.png" alt="Vector">
+        </section>
+        <section class="count">
+            <img class="count-img" src="assets/images/count.png" alt="count-img">
+            <p>Всего заметок: <span>5</span></p>
+        </section>
+    </header>
+    <form class="form">
+        <div class="form-name">
+            <h2 class="title-name">Название заметки</h2>
+            <input class="input-name" type="text" placeholder="Напишите название новой заметки...">
+        </div>
+        <div class="placement">
+            <div class="form-description">
+                <h2 class="title-name">Описание новой заметки</h2>
+                <label>
+                    <textarea class="input-description" rows="4" cols="50"
+                              placeholder="Напишите описание новой заметки..."></textarea>
+                </label>
+
+            </div>
+            <div class="form-button">
+                <h2 class="title-name">Выберите цвет заметки</h2>
+                <ul class="radio-list">
+                    <li>
+                        <input checked class="radio" type="radio" name="color" value="#f3db7d"/>
+                    </li>
+                    <li>
+                        <input class="radio" type="radio" name="color" value="#f37d7d"/>
+                    </li>
+                    <li>
+                        <input class="radio" type="radio" name="color" value="#C2F37D"/>
+                    </li>
+                    <li>
+                        <input class="radio" type="radio" name="color" value="#7DE1F3"/>
+                    </li>
+                    <li>
+                        <input class="radio" type="radio" name="color" value="#E77DF3"/>
+                    </li>
+                </ul>
+                <button class="button" type="submit">
+                    <img src="assets/images/plus-svgrepo-com-1.png">Добавить заметку
+                </button>
+            </div>
+        </div>
+
+    </form>
+    <section class="notes-field">
+        <label class="checkbox-label">
+            <input type="checkbox" class="checkbox">
+              Показать только избранные заметки
+        </label>
+
+
+        <ul class="list">
+            <li class="notes">
+                <div class="title">
+                    <h2 >Flexbox (CSS)</h2>
+                    <div>
+                        <img class="heart" src="assets/images/heart-inactive.png" alt="heart-inactive">
+                        <img src="assets/images/trash.png" alt="trash">
+                    </div>
+                </div>
+                <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </li>
+        </ul>
+        <ul class="model-window">
+            <li class="done">
+                <img src="assets/images/done.png" alt="done">
+                <p>Заметка добавлена!</p>
+
+            </li>
+            <li class="warning">
+                <img  src="assets/images/warning.png" alt="warning">
+                <p>Максимальная длина заголовка - 50 символов</p>
+            </li>
+        </ul>
+    </section>
+</section>
+<script src="add.js"></script>
+</body>
+</html>
