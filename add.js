@@ -7,15 +7,14 @@ const model = {
             title,
             content,
             color,
-            isFavorite: false,
+            isFavorite: false
         };
-        this.notes = [...this.notes, newNote];
+
+        this.notes.push(newNote);
         this.updateNotesView();
+        view.showSuccess('Заметка добавлена!');
     },
 
-    infoModel(){
-
-    },
 
     toggleFavorite(id) {
         this.notes = this.notes.map(note =>
@@ -56,11 +55,27 @@ const view = {
             const content = form.querySelector('.input-description').value;
             const color = form.querySelector('input[name="color"]:checked').value;
 
-            if (title.trim() && content.trim() && title.length < 50 && content.length < 200) {
-                controller.addNote(title, content, color);
-                form.reset();
+
+
+            if (!title.trim() || !content.trim()) {
+                this.showWarning('Заполните все поля!');
+                return;
             }
+
+            if (title.length >= 50) {
+                this.showWarning('Максимальная длина заголовка - 50 символов');
+                return;
+            }
+
+            if (content.length >= 200) {
+                this.showWarning('Максимальная длина описания - 200 символов');
+                return;
+            }
+
+            controller.addNote(title, content, color);
+            form.reset();
         });
+
 
         favoriteCheckbox.addEventListener('change', () => {
             controller.toggleShowOnlyFavorite();
@@ -92,9 +107,10 @@ const view = {
                 '<li>Заполните поля выше и создайте свою первую заметку!</li></ul>';
             return;
         }
+
         notesList.innerHTML = notes.map(note => `
-      <li class="notes" data-id="${note.id}" >
-        <div class="title" style="background-color:  ${note.color}">
+        <li class="notes" data-id="${note.id}" >
+        <div class="title" style="background-color:${note.color}">
           <h2>${note.title}</h2>
           <div>
             <img class="heart" src="assets/images/${note.isFavorite ? 'heart-active' : 'heart-inactive'}.png" alt="heart">
@@ -102,23 +118,44 @@ const view = {
           </div>
         </div>
         <p class="content">${note.content}</p>
-      </li>
-    `);
+        </li>`).join('')
     },
-
 
     updateNotesCount(count) {
         document.querySelector('.count span').textContent = count;
     },
 
-    modalWindow(note) {
-        const notesList = document.querySelector('.model-window');
-        if (note) {
-            notesList.innerHTML = `<ul class="model-window"><li class="done"><img src="assets/images/done.png" alt="done"><p>Заметка добавлена!</p></li></ul>`;
-        }
-        notesList.innerHTML =   notesList.innerHTML = `<ul class="model-window"><li class="warning"><img src="assets/images/warning.png" alt="warning"><p>Максимальная длина заголовка - 50 символов</p></li></ul>`;
-    }
+    showSuccess(message) {
+        document.querySelectorAll('.model-window li').forEach(el => {
+            el.style.display = 'none';
+        });
 
+        const notification = document.querySelector('.model-window .info');
+        const messageElement = notification.querySelector('p');
+
+        messageElement.textContent = message;
+        notification.style.display = 'block';
+
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    },
+
+    showWarning(message) {
+        document.querySelectorAll('.model-window li').forEach(el => {
+            el.style.display = 'none';
+        });
+
+        const notification = document.querySelector('.model-window .info-model');
+        const messageElement = notification.querySelector('p');
+
+        messageElement.textContent = message;
+        notification.style.display = 'block';
+
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
 
 };
 

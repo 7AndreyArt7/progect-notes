@@ -292,3 +292,8 @@
     color: #fff;
 }
 
+.model-window .info,
+.model-window .info-model {
+    display: none;  /* Скрываем по умолчанию */
+    /* остальные стили остаются без изменений */
+}
